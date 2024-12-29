@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+8<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RPG Projeto</title>
+
+  <!-- Adicionando os scripts do Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js"></script>
+
+  <script>
+    // Configuração do Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyC6ltTWvsOBD5_h2-NyYL4_VYSHzN34Onc",
+      authDomain: "meu-projeto-rpg.firebaseapp.com",
+      databaseURL: "https://meu-projeto-rpg-default-rtdb.firebaseio.com",
+      projectId: "meu-projeto-rpg",
+      storageBucket: "meu-projeto-rpg.firebasestorage.app",
+      messagingSenderId: "87107110025",
+      appId: "1:87107110025:web:30fef1c15700aa0d043258",
+      measurementId: "G-N4SEGD03WP"
+    };
+
+    // Inicializar Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    const analytics = firebase.analytics();
+  </script>
+</head>
+<body>
+  <h1>Bem-vindo ao RPG!</h1>
+  
+  <!-- Seus botões e outras funcionalidades -->
+  <button onclick="updateStats()">Atualizar Status</button>
+  <button onclick="rollDice()">Rolar Dado</button>
+
+  <script>
+    // Função para atualizar o status no Firebase
+    function updateStats() {
+     const statsRef = database.ref('stats');
+      statsRef.set({
+        vida: 100,
+        mana: 50
+      }).then(() => {
+        alert("Status atualizados com sucesso!");
+      }).catch((error) => {
+        console.error("Erro ao atualizar status:", error);
+      });
+    }
+
+    // Função para rolar um dado
+    function rollDice() {
+      const result = Math.floor(Math.random() * 20) + 1;
+      alert("Você rolou: " + result);
+    }
+  </script>
+</body>
+</html>
